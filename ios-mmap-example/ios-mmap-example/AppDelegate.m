@@ -16,7 +16,7 @@
     [self.window setRootViewController:vc];
     
     // Change the parameters to tweak the test
-    [self memoryMapTestWithSizeInMb:800 numberOfFiles:1 permission:PROT_READ];
+    [self memoryMapTestWithSizeInMb:1000 numberOfFiles:1 permission:PROT_READ];
     
     
     // Mapping 1 file Max succes size:
@@ -82,7 +82,7 @@
     size_t sizeInBytes = mb*1024*1024;
     
     for (int i=0;i<numberOfFiles;i++) {
-        [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"file%i.realm", i]
+        [[NSFileManager defaultManager] createFileAtPath:[AppDelegate writeablePathForFile:[NSString stringWithFormat:@"file%i.realm", i]]
                                                 contents:[[NSMutableData alloc] initWithLength:0 ] // Setting size to sizeInBytes does not make any difference on the results
                                               attributes:nil ];
     }
